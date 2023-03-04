@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 import io from 'socket.io-client'
 
@@ -9,6 +9,12 @@ class App extends Component {
   constructor(props) {
     super(props)
 
+    const [localStream, setLocalStream] = useState(null)
+    const [remoteStream, setRemoteStream] = useState(null)
+    const [remoteallStreams, setRemoteAllStreams] = useState([])
+    const [peerConnections, setPeerConnections] = useState({})
+    const [selectedVideo, setSelectedVideo] = useState(null)
+    
     this.state = {
       localStream: null,    // used to hold local stream object to avoid recreating the stream everytime a new offer comes
       remoteStream: null,    // used to hold remote stream object that is displayed in the main screen
